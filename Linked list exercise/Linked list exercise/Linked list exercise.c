@@ -147,7 +147,7 @@
 //}
 
 
-//142. 环形链表 II
+//leetcode 142. 环形链表 II
 //struct ListNode* detectCycle(struct ListNode* head) {
 //    //快慢指针先找到圈内相遇点
 //    struct ListNode* fast = head;
@@ -170,3 +170,88 @@
 //    }
 //    return NULL;
 //}
+
+
+//leetcode 141. 环形链表
+//bool hasCycle(struct ListNode* head) {
+//    struct ListNode* fast = head;
+//    struct ListNode* slow = head;
+//    while (fast && fast->next)
+//    {
+//        fast = fast->next->next;
+//        slow = slow->next;
+//        if (fast == slow)
+//        {
+//            return true;
+//        }
+//    }
+//    return false;
+//}
+
+
+//leetcode 160. 相交链表
+//struct ListNode* getIntersectionNode(struct ListNode* headA, struct ListNode* headB) {
+//    struct ListNode* curA = headA;
+//    struct ListNode* curB = headB;
+//    if (curA == NULL || curB == NULL)
+//    {
+//        return NULL;
+//    }
+//    while (curA != curB)
+//    {
+//        curA = curA == NULL ? headB : curA->next;
+//        curB = curB == NULL ? headA : curB->next;
+//    }
+//    return curA;
+//}
+
+
+//牛客 OR36 链表的回文结构
+//struct ListNode* middleNode(struct ListNode* head) {
+//    struct ListNode* fast = head;
+//    struct ListNode* slow = head;
+//    while (fast && fast->next)
+//    {
+//        fast = fast->next->next;
+//        slow = slow->next;
+//    }
+//    return slow;
+//}
+//
+//struct ListNode* reverseList(struct ListNode* head) {
+//    struct ListNode* prev = NULL;
+//    struct ListNode* cur = head;
+//    while (cur)
+//    {
+//        //当cur不为空时创建next,这样可以防止越界
+//        struct ListNode* next = cur->next;
+//        cur->next = prev;
+//        prev = cur;
+//        cur = next;
+//    }
+//    return prev;
+//}
+//
+//class PalindromeList {
+//public:
+//    bool chkPalindrome(ListNode* A) {
+//        // write code here
+//        //用快慢指针找到中间节点
+//        struct ListNode* mid = middleNode(A);
+//        struct ListNode* rHead = reverseList(mid);
+//        while (rHead && A)
+//        {
+//            if (rHead->val != A->val)
+//            {
+//                return false;
+//            }
+//            else
+//            {
+//                rHead = rHead->next;
+//                A = A->next;
+//            }
+//        }
+//        return true;
+//    }
+//};
+
