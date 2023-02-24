@@ -255,3 +255,68 @@
 //    }
 //};
 
+
+//leetcode 138. 复制带随机指针的链表
+/**
+ * Definition for a Node.
+ * struct Node {
+ *     int val;
+ *     struct Node *next;
+ *     struct Node *random;
+ * };
+ */
+
+//struct Node* copyRandomList(struct Node* head) {
+//    if (head == NULL)
+//    {
+//        return NULL;
+//    }
+//    //1.拷贝链表在原链表插入节点
+//    struct Node* cur = head;
+//    while (cur)
+//    {
+//        struct Node* copy = (struct Node*)malloc(sizeof(struct Node));
+//        copy->val = cur->val;
+//        copy->next = cur->next;
+//        cur->next = copy;
+//        cur = copy->next;
+//    }
+//
+//    //2.将拷贝的节点的random指向原节点的random的next;
+//    cur = head;
+//    while (cur)
+//    {
+//        struct Node* copy = cur->next;
+//        if (cur->random == NULL)
+//        {
+//            copy->random = NULL;
+//        }
+//        else
+//        {
+//            copy->random = cur->random->next;
+//        }
+//        cur = copy->next;
+//    }
+//
+//    //3.拼接拷贝节点成为链表，还原原链表
+//    struct Node* copyHead = NULL;
+//    struct Node* copyTail = NULL;
+//    cur = head;
+//    while (cur)
+//    {
+//        struct Node* copy = cur->next;
+//        struct Node* next = copy->next;
+//        if (copyTail == NULL)
+//        {
+//            copyHead = copyTail = copy;
+//        }
+//        else
+//        {
+//            copyTail->next = copy;
+//            copyTail = copy;
+//        }
+//        cur->next = next;
+//        cur = next;
+//    }
+//    return copyHead;
+//}
