@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 ﻿  Heap.c
   binary tree _ heap.vcxproj -> D:\数据结构与算法\binary tree _ heap\x64\Debug\binary tree _ heap.exe
+=======
+﻿  Heap.c
+  binary tree _ heap.vcxproj -> D:\数据结构与算法\binary tree _ heap\x64\Debug\binary tree _ heap.exe
+>>>>>>> e2150ea71eed8de021a110986d0c1356c04f639a
