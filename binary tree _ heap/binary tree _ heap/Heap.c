@@ -9,6 +9,7 @@ void Swap(HPDataType* p1, HPDataType* p2)
 	*p2 = tmp;
 }
 
+//向上调整法
 void AdjustUp(HPDataType* a, int n, int child)
 {
 	int parent = (child - 1) / 2;
