@@ -204,4 +204,177 @@ int* preorderTraversal(struct TreeNode* root, int* returnSize) {
 
 
 
+//leetcode 572. 另一棵树的子树
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+/*
+bool isSameTree(struct TreeNode* p, struct TreeNode* q)
+{
+    if (p == NULL && q == NULL)
+        return true;
+    else if (p == NULL || q == NULL)
+        return false;
+    else if (p->val != q->val)
+        return false;
+    else
+        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+}
 
+bool isSubtree(struct TreeNode* root, struct TreeNode* subRoot) {
+    if (root == NULL)
+        return false;
+    if (isSameTree(root, subRoot))
+        return true;
+    return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
+}
+*/
+
+
+
+
+//leetcode 剑指 Offer 28. 对称的二叉树
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+/*
+bool check(struct TreeNode* p, struct TreeNode* q)
+{
+    if (!p && !q)
+        return true;
+    if (!p || !q)
+        return false;
+    return p->val == q->val && check(p->left, q->right) && check(p->right, q->left);
+}
+
+bool isSymmetric(struct TreeNode* root) {
+    return check(root, root);
+}
+*/
+
+
+
+
+//leetcode 110. 平衡二叉树
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+
+/*
+方法一：
+int TreeDepth(struct TreeNode* root)
+{
+    if (root == NULL)
+        return 0;
+    int leftDepth = TreeDepth(root->left);
+    int rightDepth = TreeDepth(root->right);
+    return 1 + (leftDepth > rightDepth ? leftDepth : rightDepth);
+}
+
+bool isBalanced(struct TreeNode* root) {
+    if (root == NULL)
+    {
+        return true;
+    }
+    int gap = TreeDepth(root->left) - TreeDepth(root->right);
+    return  abs(gap) <= 1 && isBalanced(root->left) && isBalanced(root->right);
+}
+*/
+
+/*
+方法二：
+ //优化版本（后续遍历）,时间复杂度最坏为O（N）
+    bool _isBalanced(struct TreeNode* root, int* pDepth)
+{
+    //给个指针，每判断一次就带回返回值
+    if (root == NULL)
+    {
+        *pDepth = 0;
+        return true;
+    }
+    else
+    {
+        int leftDepth = 0;
+        int rightDepth = 0;
+        if ((!_isBalanced(root->left, &leftDepth)) || (!_isBalanced(root->right, &rightDepth)))
+            return false;
+        if (abs(leftDepth - rightDepth) > 1)
+            return false;
+        *pDepth = (leftDepth > rightDepth ? leftDepth : rightDepth) + 1;
+        return true;
+    }
+}
+
+bool isBalanced(struct TreeNode* root) {
+    int Depth = 0;
+    return _isBalanced(root, &Depth);
+}
+*/
+
+
+
+
+//牛客网 清华大学计算机历年考研复试 [编程题]二叉树遍历
+/*
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+typedef struct TreeNode {
+    char val;
+    struct TreeNode* left;
+    struct TreeNode* right;
+}TreeNode;
+
+TreeNode* CreateTree(char* str, int* pi)
+{
+    if (str[*pi] == '#')
+    {
+        ++(*pi);
+        return NULL;
+    }
+    else
+    {
+        TreeNode* root = (TreeNode*)malloc(sizeof(TreeNode));
+        root->val = str[*pi];
+        ++(*pi);
+        root->left = CreateTree(str, pi);
+        root->right = CreateTree(str, pi);
+        return root;
+    }
+}
+
+void InOrderTree(TreeNode* root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    InOrderTree(root->left);
+    printf("%c ", root->val);
+    InOrderTree(root->right);
+}
+
+int main() {
+    char str[101] = { 0 };
+    scanf("%s", str);
+    int i = 0;
+    TreeNode* root = CreateTree(str, &i);
+    InOrderTree(root);
+    return 0;
+}
+*/
