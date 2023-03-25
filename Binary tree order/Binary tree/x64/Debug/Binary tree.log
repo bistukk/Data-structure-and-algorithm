@@ -1,4 +1,0 @@
-﻿  test.c
-D:\数据结构与算法\Binary tree\Binary tree\test.c(71,3): warning C4033: “CreateNode”必须返回值
-D:\数据结构与算法\Binary tree\Binary tree\test.c(76): warning C4716: “CreateNode”: 必须返回一个值
-  Binary tree.vcxproj -> D:\数据结构与算法\Binary tree\x64\Debug\Binary tree.exe
