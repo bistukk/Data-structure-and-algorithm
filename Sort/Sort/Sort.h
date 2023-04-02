@@ -4,6 +4,9 @@
 #include<assert.h>
 #include<stdlib.h>
 #include<time.h>
+
+void PrintArray(int* a, int n);
+
 //÷±Ω”≤Â»Î≈≈–Ú
 void InsertSort(int* a, int n);
 

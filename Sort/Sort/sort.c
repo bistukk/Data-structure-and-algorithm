@@ -2,6 +2,15 @@
 
 #include"Sort.h"
 
+void PrintArray(int* a, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		printf("%d ", a[i]);
+	}
+	printf("\n");
+}
+
 //插入排序(时间复杂度为：O(N~2))
 void InsertSort(int* a, int n)
 {
@@ -167,3 +176,171 @@ void BubbleSort(int* a, int n)
 		--end;
 	}
 }
+
+//三数取中，让最坏的情况不会再出现
+int GetMidIndex(int* a, int begin, int end)
+{
+	int mid = (begin + end) / 2;
+	if (a[begin] < a[mid])
+	{
+		if (a[mid] < a[end])
+		{
+			return mid;
+		}
+		else if (a[begin] > a[end])
+		{
+			return begin;
+		}
+		else
+		{
+			return end;
+		}
+	}
+	else
+	{
+		if (a[mid] > a[end])
+		{
+			return mid;
+		}
+		else if (a[begin] < a[end])
+		{
+			return begin;
+		}
+		else
+		{
+			return end;
+		}
+	}
+}
+
+//左右指针法
+int PartSort1(int* a, int begin, int end)
+{
+	int midIndex = GetMidIndex(a, begin, end);
+	Swap(&a[midIndex], &a[end]);
+	int keyIndex = end;
+	while (begin < end)
+	{
+		//begin找大
+		while (begin < end && a[begin] <= a[keyIndex])
+		{
+			++begin;
+		}
+
+		//end找小
+		while (begin < end && a[end] >= a[keyIndex])
+		{
+			--end;
+		}
+
+		Swap(&a[begin], &a[end]);
+	}
+	Swap(&a[begin], &a[keyIndex]);
+
+	return begin;
+}
+
+//挖坑法
+int PartSort2(int* a, int begin, int end)
+{
+	int midIndex = GetMidIndex(a, begin, end);
+	Swap(&a[midIndex], &a[end]);
+	int key = a[end];
+	while (begin < end)
+	{
+		while (begin < end && a[begin] <= key)
+		{
+			++begin;
+		}
+
+		//左边找到比key大的填到右边的坑，begin位置就形成新的坑
+		a[end] = a[begin];
+
+		while (begin < end && a[end] >= key)
+		{
+			--end;
+		}
+
+		//右边找到比key小的填到右边的坑，end位置就形成新的坑
+		a[begin] = a[end];
+	}
+	a[begin] = key;
+	return begin;
+}
+
+//前后指针法
+int PartSort3(int* a, int begin, int end)
+{
+	int midIndex = GetMidIndex(a, begin, end);
+	Swap(&a[midIndex], &a[end]);
+	int prev = begin - 1;
+	int cur = begin;
+	int keyIndex = end;
+	while (cur < end)
+	{
+		if (a[cur] < a[keyIndex] && ++prev != cur)
+		{
+			Swap(&a[cur], &a[prev]);
+		}
+		++cur;
+	}
+	Swap(&a[++prev], &a[cur]);
+	return prev;
+}
+
+
+//快排,经过三数取中和优化后，时间复杂度可以认为是O(N*logN)
+void QuickSort(int* a, int left, int right)
+{
+	assert(a);
+	if (left >= right) return;
+	if((right - left + 1) > 10)
+	{
+		int div = PartSort3(a, left, right);
+		QuickSort(a, left, div - 1);
+		QuickSort(a, div + 1, right);
+	}
+	
+	else
+	{
+		//小于等于10个以内的区间，不再递归排序
+		InsertSort(a + left, right - left + 1);
+	}
+
+}
+
+//快排非递归版本，提高效率，且能防止系统栈帧太深导致的栈溢出
+/*void QuickSortNonR(int* a, int left, int right)
+{
+	Stack st;
+	StackInit(&st);
+
+	StackPush(&st, right);
+	StackPush(&st, left);
+
+	while (!StackEmpty(&st))
+	{
+		int begin = StackTop(&st);
+		StackPop(&st);
+		int end = StackTop(&st);
+		StackPop(&st);
+
+		int div = PartSort3(a, begin, end);
+		if (div + 1 < end)
+		{
+			StackPush(&st, end);
+			StackPush(&st, div + 1);
+		}
+		if (begin < div - 1)
+		{
+			StackPush(&st, div - 1);
+			StackPush(&st, begin);
+		}
+	}
+	StackDestroy(&st);
+}*/
+
+
+
+
+

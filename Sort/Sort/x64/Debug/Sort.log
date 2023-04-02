@@ -1,3 +1,6 @@
 ﻿  test.c
-D:\数据结构与算法\Sort\Sort\test.c(55,8): warning C4244: “函数”: 从“time_t”转换到“unsigned int”，可能丢失数据
-  Sort.vcxproj -> D:\数据结构与算法\Sort\x64\Debug\Sort.exe
+D:\数据结构与算法\Data-structure-and-algorithm\Sort\Sort\test.c(49,42): warning C4020: “QuickSort”: 实参太多
+D:\数据结构与算法\Data-structure-and-algorithm\Sort\Sort\test.c(56,8): warning C4244: “函数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+D:\数据结构与算法\Data-structure-and-algorithm\Sort\Sort\test.c(96,20): warning C4020: “QuickSort”: 实参太多
+D:\数据结构与算法\Data-structure-and-algorithm\Sort\Sort\test.c(124,12): warning C4305: “初始化”: 从“int”到“char”截断
+  Sort.vcxproj -> D:\数据结构与算法\Data-structure-and-algorithm\Sort\x64\Debug\Sort.exe

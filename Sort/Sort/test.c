@@ -1,14 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include"Sort.h"
 
-void PrintArray(int* a,int n)
-{
-	for (int i = 0; i < n; i++)
-	{
-		printf("%d ", a[i]);
-	}
-	printf("\n");
-}
+
 
 void TestInsertSort()
 {
@@ -47,6 +40,14 @@ void TestBubbleSort()
 	PrintArray(a, sizeof(a) / sizeof(a[0]));
 	BubbleSort(a, sizeof(a) / sizeof(a[0]));
 	PrintArray(a, sizeof(a) / sizeof(a[0]));
+}
+
+void TestQuickSort()
+{
+	int a[] = { 3, 1, 4 ,1, 7, 9, 8, 2, 0, 5 };
+	PrintArray(a, sizeof(a) / sizeof(int));
+	QuickSort(a, 0, sizeof(a) / sizeof(int) - 1);
+	PrintArray(a, sizeof(a) / sizeof(int));
 }
 
 //ÅÅÐòÐÔÄÜ²âÊÔ
@@ -91,11 +92,16 @@ void TestOP()
 	BubbleSort(a5, N);
 	int end5 = clock();
 
+	int begin6 = clock();
+	QuickSort(a6, 0, N-1);
+	int end6 = clock();
+
 	printf("InsertSort:%d\n", end1 - begin1);
 	printf("ShellSort:%d\n", end2 - begin2);
 	printf("SelectSort:%d\n", end3 - begin3);
 	printf("HeapSort:%d\n", end4 - begin4);
 	printf("BubbleSort:%d\n", end5 - begin5);
+	printf("QuickSort:%d\n", end6 - begin6);
 
 	free(a1);
 	free(a2);
@@ -113,6 +119,7 @@ int main()
 	//TestSelectSort();
 	//TestHeapSort();
 	//TestBubbleSort();
-	TestOP();
+	//TestQuickSort();
+	//TestOP();
 	return 0;
 }
