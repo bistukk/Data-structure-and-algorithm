@@ -309,7 +309,7 @@ void QuickSort(int* a, int left, int right)
 
 }
 
-//快排非递归版本，提高效率，且能防止系统栈帧太深导致的栈溢出
+//快排非递归版本，提高效率，且能防止系统栈帧太深导致的栈溢出。
 /*void QuickSortNonR(int* a, int left, int right)
 {
 	Stack st;
