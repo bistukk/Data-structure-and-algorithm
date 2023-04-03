@@ -2,7 +2,6 @@
 
 #include"Sort.h"
 
-<<<<<<< HEAD
 void PrintArray(int* a, int n)
 {
 	for (int i = 0; i < n; i++)
@@ -13,16 +12,14 @@ void PrintArray(int* a, int n)
 }
 
 //²åÈëÅÅĞò(Ê±¼ä¸´ÔÓ¶ÈÎª£ºO(N~2))
-=======
 //æ’å…¥æ’åº(æ—¶é—´å¤æ‚åº¦ä¸ºï¼šO(N~2))
->>>>>>> a11e5f3f0a89ad44d2ff253cc36822a01f838fce
 void InsertSort(int* a, int n)
 {
 	assert(a);
 
-	for (int i = 0; i < n - 1; i++)//æ³¨æ„è¾¹ç•Œæ˜¯n-1,å› ä¸ºæ˜¯ä»0 åˆ° n-2æ’å…¥
+	for (int i = 0; i < n - 1; i++)//æ³¨æ„è¾¹ç•Œæ˜¯n-1,å› ä¸ºæ˜¯ä»0 åˆ?n-2æ’å…¥
 	{
-		//æŠŠend + 1æ’å…¥[0 - end]çš„æœ‰åºåŒºé—´
+		//æŠŠend + 1æ’å…¥[0 - end]çš„æœ‰åºåŒºé—?
 		int end = i;
 		int tmp = a[end + 1];
 		while (end >= 0)
@@ -104,7 +101,7 @@ void SelectSort(int* a, int n)
 		}
 		Swap(&a[begin], &a[mini]);
 		
-		//å¦‚æœå‡ºç°é‡å çš„æƒ…å†µ, åˆ™éœ€æŠŠmaxiçš„ä½ç½®ä¿®æ­£ï¼Œé˜²æ­¢åˆæ¢å›æ¥
+		//å¦‚æœå‡ºç°é‡å çš„æƒ…å†? åˆ™éœ€æŠŠmaxiçš„ä½ç½®ä¿®æ­£ï¼Œé˜²æ­¢åˆæ¢å›æ¥
 		if (maxi == begin)
 		{
 			maxi = mini;
@@ -115,8 +112,8 @@ void SelectSort(int* a, int n)
 	}
 }
 
-//å †æ’åº
-//å‘ä¸‹è°ƒæ•´æ³•
+//å †æ’åº?
+//å‘ä¸‹è°ƒæ•´æ³?
 void AdjustDown(int* a, int n, int root)
 {
 	int parent = root;
@@ -142,7 +139,7 @@ void AdjustDown(int* a, int n, int root)
 //æ—¶é—´å¤æ‚åº¦O(log(N))
 void HeapSort(int* a, int n)
 {
-	//æ’å‡åºï¼Œå»ºå¤§å †
+	//æ’å‡åºï¼Œå»ºå¤§å ?
 	for (int i = (n - 1 - 1) / 2; i >= 0; --i)
 	{
 		AdjustDown(a, n, i);
@@ -172,7 +169,7 @@ void BubbleSort(int* a, int n)
 			}
 		}
 
-		//ä¼˜åŒ–: å¦‚æœä¸€èººå†’æ³¡æ’åºæ²¡æœ‰å‘ç”Ÿäº¤æ¢ï¼Œåˆ™è¯´æ˜å·²ç»æœ‰åº
+		//ä¼˜åŒ–: å¦‚æœä¸€èººå†’æ³¡æ’åºæ²¡æœ‰å‘ç”Ÿäº¤æ¢ï¼Œåˆ™è¯´æ˜å·²ç»æœ‰åº?
 		if (exchange == 0)
 		{
 			break;
@@ -180,7 +177,7 @@ void BubbleSort(int* a, int n)
 		--end;
 	}
 }
-<<<<<<< HEAD
+
 
 //ÈıÊıÈ¡ÖĞ£¬ÈÃ×î»µµÄÇé¿ö²»»áÔÙ³öÏÖ
 int GetMidIndex(int* a, int begin, int end)
@@ -346,8 +343,79 @@ void QuickSort(int* a, int left, int right)
 }*/
 
 
+void MergeArray(int* a, int begin1, int end1, int begin2, int end2, int* tmp)
+{
+	int left = begin1, right = end2;
+	int index = begin1;
+	while (begin1 <= end1 && begin2 <= end2)
+	{
+		if (a[begin1] < a[begin2])
+			tmp[index++] = a[begin1++];
+		else
+			tmp[index++] = a[begin2++];
+	}
 
+	while (begin1 <= end1)
+	{
+		tmp[index++] = a[begin1++];
+	}
 
+	while (begin2 <= end2)
+	{
+		tmp[index++] = a[begin2++];
+	}
 
-=======
->>>>>>> a11e5f3f0a89ad44d2ff253cc36822a01f838fce
+	//°Ñ¹é²¢ºÃµÄtmpµÄÊı¾İ¿½±´»ØÔ­Êı×é
+	for (int i = left; i <= right; i++)
+	{
+		a[i] = tmp[i];
+	}
+}
+
+void _MergeSort(int* a, int left, int right, int* tmp)
+{
+	if (left >= right)
+		return;
+	int mid = (left + right) / 2;
+	_MergeSort(a, left, mid, tmp);
+	_MergeSort(a, mid + 1, right, tmp);
+	MergeArray(a, left, mid, mid + 1, right, tmp);
+}
+//¹é²¢ÅÅĞò£¬Ê±¼ä¸´ÔÓ¶ÈÎªO(N*logN),¿Õ¼ä¸´ÔÓ¶ÈÎªO(N)
+void MergeSort(int* a, int n)
+{
+	assert(a);
+	int* tmp = (int*)malloc(sizeof(int) * n);
+	_MergeSort(a, 0, n - 1, tmp);
+	free(tmp);
+}
+
+//¿ìÅÅ·Çµİ¹é°æ±¾
+void MergeSortNonR(int* a, int n)
+{
+	assert(a);
+	int* tmp = (int*)malloc(sizeof(int) * n);
+	int gap = 1;
+	while (gap < n)
+	{
+		for (int i = 0; i < n; i += 2 * gap)
+		{
+			int begin1 = i, end1 = i + gap - 1;
+			int begin2 = i + gap, end2 = i + 2 * gap - 1;
+			
+			/*µ±ºÏ²¢Ê±²»ÊÇ2µÄÅ¼Êı±¶Ê±£¬ĞèÒªĞŞ±ß½ç*/
+			//1¡¢ºÏ²¢Ê±Ö»ÓĞÒ»×éÊ±£¬²»ĞèÒªºÏ²¢
+			if (begin2 >= n)
+				break;
+			
+			//2¡¢ºÏ²¢Ê±µÚ¶ş×éÖ»ÓĞ²¿·ÖÊı¾İ,ĞèÒªĞŞÕıend2±ß½ç
+			if (end2 >= n)
+				end2 = n - 1;
+
+			MergeArray(a, begin1, end1, begin2, end2, tmp);
+		}
+		//PrintArray(a, n);
+		gap *= 2;
+	}
+	free(tmp);
+}

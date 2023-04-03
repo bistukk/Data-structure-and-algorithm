@@ -45,9 +45,17 @@ void TestBubbleSort()
 void TestQuickSort()
 {
 	int a[] = { 3, 1, 4 ,1, 7, 9, 8, 2, 0, 5 };
-	PrintArray(a, sizeof(a) / sizeof(int));
-	QuickSort(a, 0, sizeof(a) / sizeof(int) - 1);
-	PrintArray(a, sizeof(a) / sizeof(int));
+	PrintArray(a, sizeof(a) / sizeof(0));
+	QuickSort(a, 0, sizeof(a) / sizeof(0) - 1);
+	PrintArray(a, sizeof(a) / sizeof(0));
+}
+
+void TestMergeSort()
+{
+	int a[] = { 10,6,7,1,3,9,7,5};
+	PrintArray(a, sizeof(a) / sizeof(0));
+	MergeSortNonR(a, sizeof(a) / sizeof(0));
+	PrintArray(a, sizeof(a) / sizeof(0));
 }
 
 //≈≈–Ú–‘ƒ‹≤‚ ‘
@@ -61,6 +69,7 @@ void TestOP()
 	int* a4 = (int*)malloc(sizeof(int) * N);
 	int* a5 = (int*)malloc(sizeof(int) * N);
 	int* a6 = (int*)malloc(sizeof(int) * N);
+	int* a7 = (int*)malloc(sizeof(int) * N);
 
 	for (int i = 0; i < N; ++i)
 	{
@@ -70,6 +79,7 @@ void TestOP()
 		a4[i] = a1[i];
 		a5[i] = a1[i];
 		a6[i] = a1[i];
+		a7[i] = a1[i];
 	}
 
 	int begin1 = clock();
@@ -96,12 +106,17 @@ void TestOP()
 	QuickSort(a6, 0, N-1);
 	int end6 = clock();
 
+	int begin7 = clock();
+	MergeSort(a7, N);
+	int end7 = clock();
+
 	printf("InsertSort:%d\n", end1 - begin1);
 	printf("ShellSort:%d\n", end2 - begin2);
 	printf("SelectSort:%d\n", end3 - begin3);
 	printf("HeapSort:%d\n", end4 - begin4);
 	printf("BubbleSort:%d\n", end5 - begin5);
 	printf("QuickSort:%d\n", end6 - begin6);
+	printf("MergeSort:%d\n", end7 - begin7);
 
 	free(a1);
 	free(a2);
@@ -109,6 +124,7 @@ void TestOP()
 	free(a4);
 	free(a5);
 	free(a6);
+	free(a7);
 }
 
 
@@ -120,6 +136,7 @@ int main()
 	//TestHeapSort();
 	//TestBubbleSort();
 	//TestQuickSort();
-	//TestOP();
+	//TestMergeSort();
+	TestOP();
 	return 0;
 }
